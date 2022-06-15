@@ -1,13 +1,24 @@
-using Microsoft.AspNetCore.ResponseCompression;
+using EDU_Journal.Server.Data;
+using EDU_Journal.Server.Services;
+using Microsoft.EntityFrameworkCore;
+
+// (1) create and add things to builder and build app
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddDbContext<JournalDbContext>(options => options.UseInMemoryDatabase("Journal"));
+
+builder.Services.AddScoped<IUserService, UserService>();
+
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
 
 var app = builder.Build();
+
+// (2) configure the app
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

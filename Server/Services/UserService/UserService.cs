@@ -1,0 +1,32 @@
+﻿using AutoMapper;
+using EDU_Journal.Server.Data;
+using EDU_Journal.Shared.DTOs;
+
+namespace EDU_Journal.Server.Services
+{
+    public class UserService : IUserService
+    {
+        private readonly JournalDbContext _context;
+        private readonly IMapper _mapper;   
+
+        public UserService(JournalDbContext context, IMapper mapper)
+        {
+            _context = context;
+            _mapper = mapper;
+        }
+
+        public List<UserDto> GetAll()
+        {
+            try
+            {
+                var data = _context.Users.ToList();
+                return _mapper.Map<List<UserDto>>(data);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                throw ex;
+            }
+        }
+    }
+}
