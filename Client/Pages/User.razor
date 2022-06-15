@@ -1,0 +1,29 @@
+﻿ @page "/user"
+<h3>User</h3>
+
+<input placeholder="First Name" @bind="firstName"/>
+<input placeholder="Last Name" @bind="lastName"/>
+<p></p>
+
+<p>First Name: @firstName</p>
+<p>Last Name: @lastName</p>
+
+
+<br/> <br/>
+<button @onclick="AddFirstName">Add first name</button>
+<button @onclick="AddLastName">Add last name</button>
+
+@code {
+    private string? firstName;
+    private string? lastName;
+
+    private void AddFirstName()
+    {
+        firstName = firstName;
+    }
+
+    private void AddLastName()
+    {
+        lastName = lastName;
+    }
+}

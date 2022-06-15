@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32505.173
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EDU Journal.Server", "Server\EDU Journal.Server.csproj", "{ABAB1C2D-4CA4-4BED-B24E-C3A3F56C5781}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EDU Journal.Server", "Server\EDU Journal.Server.csproj", "{ABAB1C2D-4CA4-4BED-B24E-C3A3F56C5781}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EDU Journal.Client", "Client\EDU Journal.Client.csproj", "{C19793FB-F3B5-4B1C-A8EF-C7491830D8A1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EDU Journal.Client", "Client\EDU Journal.Client.csproj", "{C19793FB-F3B5-4B1C-A8EF-C7491830D8A1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EDU Journal.Shared", "Shared\EDU Journal.Shared.csproj", "{95C50D41-6114-4D35-93AB-2007AD711B4E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EDU Journal.Shared", "Shared\EDU Journal.Shared.csproj", "{95C50D41-6114-4D35-93AB-2007AD711B4E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
