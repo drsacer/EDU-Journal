@@ -13,5 +13,13 @@ namespace EDU_Journal.Server.Entities
 
         [Required]
         public string Email { get; set; }
+
+        public string? FirstName { get; set; }
+        public string? LastName { get; set; }
+
+        public string? Password { get; set; }
+
+        public Boolean IsAdmin { get; set; }
+
     }
 }
