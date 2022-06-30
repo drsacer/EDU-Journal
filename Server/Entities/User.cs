@@ -4,22 +4,23 @@ namespace EDU_Journal.Server.Entities
 {
     public class User
     {
-        [Key]
+        [Key] //atributes
         public int Id { get; set; }
+
+        public string? Name { get; set; }
 
         [Required]
         [StringLength(50)]
         public string UserName { get; set; }
 
         [Required]
+        [EmailAddress]
         public string Email { get; set; }
 
-        public string? FirstName { get; set; }
-        public string? LastName { get; set; }
-
+        [Required]
         public string? Password { get; set; }
-
-        public Boolean IsAdmin { get; set; }
+        [Required]
+        public bool IsAdmin { get; set; }
 
     }
 }
