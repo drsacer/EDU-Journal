@@ -12,8 +12,7 @@ namespace EDU_Journal.Server.Entities
         public virtual User User { get; set; }
 
         [Required]
-        [DataType(DataType.Date)]
-        public DateOnly Date { get; set; }
+        public DateTime Date { get; set; }
 
         public virtual SickLeave SickLeave { get; set; }
 

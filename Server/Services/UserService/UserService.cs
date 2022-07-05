@@ -29,17 +29,6 @@ namespace EDU_Journal.Server.Services
                 throw ex;
             }
         }
-        /* proba K
-        void IUserService.AddUser(UserDto userDto)
-        {
-            User user;
-            user = new User();
-            user.Email = "test@gmail.com";
-
-
-            _context.Add(user);
-            _context.SaveChanges();
-        } */
 
         List<UserDto> IUserService.GetAll()
         {

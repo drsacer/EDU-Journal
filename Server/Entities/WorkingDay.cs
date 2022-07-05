@@ -18,20 +18,16 @@ namespace EDU_Journal.Server.Entities
         public virtual User User { get; set; } //veza na tablicu User - služi za povezivanje User i WorkingDay (važan tip virtual)
 
         [Required]
-        [DataType(DataType.Date)]
-        public DateOnly Date { get; set; }
+        public DateTime Date { get; set; }
 
         [Required]
-        [DataType(DataType.Time)]
-        public TimeOnly  StartTime { get; set; }
+        public DateTime StartTime { get; set; }
         
         [Required]
-        [DataType(DataType.Time)]
-        public TimeOnly EndTime { get; set; }
+        public DateTime EndTime { get; set; }
         
         [Required]
-        [DataType(DataType.Time)]
-        public TimeOnly PauseDuration { get; set; }
+        public TimeSpan PauseDuration { get; set; }
 
         [Column(TypeName = "varchar(300)")]
         public string? Note { get; set; }

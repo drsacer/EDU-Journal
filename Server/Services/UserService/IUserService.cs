@@ -4,9 +4,6 @@ namespace EDU_Journal.Server.Services
 {
     public interface IUserService
     {
-        public List<UserDto> GetAll();
-        
-        // proba K 
-        void AddUser(UserDto userDto);
+        public List<UserDto> GetAll();       
     }
 }
