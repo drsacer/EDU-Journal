@@ -1,12 +1,26 @@
-﻿namespace EDU_Journal.Server.Entities
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace EDU_Journal.Server.Entities
 {
+    [Table("NonWorkingDays")]
     public class NonWorkingDay
     {
+        [Key]
         public int Id { get; set; }
+
+        public virtual User User { get; set; }
+
+        [Required]
+        [DataType(DataType.Date)]
         public DateOnly Date { get; set; }
-        public User User { get; set; }
+
+        public virtual SickLeave SickLeave { get; set; }
+
+        [Column(TypeName = "varchar(300)")]
         public string? Note { get; set; }
-        public SickLeave SickLeave { get; set; }
+
+        
 
     }
 }
