@@ -1,5 +1,6 @@
 using EDU_Journal.Server.Data;
 using EDU_Journal.Server.Services;
+using EDU_Journal.Server.Services.VacationService;
 using EDU_Journal.Server.Services.WorkingDayService;
 using Microsoft.EntityFrameworkCore;
 
@@ -12,6 +13,7 @@ builder.Services.AddDbContext<JournalDbContext>(options => options.UseInMemoryDa
 
 builder.Services.AddScoped<IUserService, UserService>(); // Dependency injection
 builder.Services.AddScoped<IWorkingDayService, WorkingDayService>();
+builder.Services.AddScoped<IVacationService, VacationService>();
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 

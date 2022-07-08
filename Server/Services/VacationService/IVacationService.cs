@@ -1,7 +1,7 @@
 ﻿namespace EDU_Journal.Server.Services.VacationService
 {
-    public interface Interface
+    public interface IVacationService
     {
-        public int numberOfVacationDays();
+        void Create(DateOnly dateFrom, DateOnly dateTo, string? note);
     }
 }
