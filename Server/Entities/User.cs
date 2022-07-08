@@ -16,11 +16,12 @@ namespace EDU_Journal.Server.Entities
         [EmailAddress]
         public string Email { get; set; }
 
+
         [Required]
         [DataType(DataType.Password)]
         [MaxLength(12)]
         public string? Password { get; set; }
-        
+
         [Required]
         public bool IsAdmin { get; set; }
 

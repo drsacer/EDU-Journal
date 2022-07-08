@@ -1,4 +1,4 @@
-﻿using EDU_Journal.Server.Entities;
+﻿
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -10,9 +10,9 @@ namespace EDU_Journal.Server.Entities
         
         [Key]
         public int Id { get; set; }
-
-       
-        public int UserId { get; set; }  // vanjski ključ - koristi se samo za bazu
+        
+        [Required]
+        public int UserId { get; set; }  // FK - koristi se samo za bazu
 
         [Required]
         public virtual User User { get; set; } //veza na tablicu User - služi za povezivanje User i WorkingDay (važan tip virtual)

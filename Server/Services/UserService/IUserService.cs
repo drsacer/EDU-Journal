@@ -7,6 +7,6 @@ namespace EDU_Journal.Server.Services
         public List<UserDto> GetAll();
         
         // proba K 
-        void AddUser(UserDto userDto);
+       // void AddUser(UserDto userDto);
     }
 }

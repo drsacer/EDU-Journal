@@ -9,11 +9,19 @@ namespace EDU_Journal.Server.Entities
         [Key]
         public int Id { get; set; }
 
+        public int UserId { get; set; } //FK
+
+        public int SickLeaveId { get; set; } // FK
+
         public virtual User User { get; set; }
 
         [Required]
         [DataType(DataType.Date)]
-        public DateOnly Date { get; set; }
+        public DateOnly StartDate { get; set; }
+
+        [Required]
+        [DataType(DataType.Date)]
+        public DateOnly EndDate { get; set; }
 
         public virtual SickLeave SickLeave { get; set; }
 

@@ -1,5 +1,6 @@
 using EDU_Journal.Server.Data;
 using EDU_Journal.Server.Services;
+using EDU_Journal.Server.Services.WorkingDayService;
 using Microsoft.EntityFrameworkCore;
 
 // (1) create and add things to builder and build app
@@ -9,7 +10,8 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddDbContext<JournalDbContext>(options => options.UseInMemoryDatabase("Journal"));
 
-builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IUserService, UserService>(); // Dependency injection
+builder.Services.AddScoped<IWorkingDayService, WorkingDayService>();
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
