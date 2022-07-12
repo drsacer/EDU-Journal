@@ -9,8 +9,9 @@ namespace EDU_Journal.Server
         public AutoMapperProfile()
         {
             CreateMap<User, UserDto>();
-                // .ForMember(x => x.Id, o => o.Ignore());
+            // .ForMember(x => x.Id, o => o.Ignore());
 
+            CreateMap<WorkingDayDto, WorkingDay>();
         }
     }
 }

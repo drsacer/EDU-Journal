@@ -1,32 +1,35 @@
-﻿using EDU_Journal.Server.Data;
+﻿using AutoMapper;
+using EDU_Journal.Server.Data;
 using EDU_Journal.Server.Entities;
+using EDU_Journal.Shared.DTOs;
 
 namespace EDU_Journal.Server.Services.WorkingDayService
 {
     public class WorkingDayService : IWorkingDayService
     {
         private readonly JournalDbContext _context;
-        // je li ovo isto kao i da u parametrima fukncije MonthlyNumbersOfWorkingHours dodam (WorkingDay workingDay) ?
+        private readonly IMapper _mapper;
 
-        
-        private List<String> months = new List<string>(new string[] { "January", "February", "March", "April", "May", "June", "July", "August", "September" });
-
-        public WorkingDayService (JournalDbContext context)
+        public WorkingDayService(JournalDbContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
-        // Kako pozvati tu funkciju i probati unijeti podatke početnog i završnog vremena u konzoli
-        //public TimeSpan MonthlyNumbersOfWorkingHours(WorkingDay workingday)
-        //{
-        //   int NumberOfDays = 0;
-        //   TimeSpan DailyNumberOfWorkingHours = _workingDay.EndTime - _workingDay.StartTime ; // - _workingDay.PauseDuration
-        //   NumberOfDays++;
+        public void Book(WorkingDayDto workingDay)
+        {
+            var data = _mapper.Map<WorkingDay>(workingDay);
 
-        //   // Console.Write(number);
-        //    return DailyNumberOfWorkingHours * NumberOfDays ;
-        //}
+            _context.WorkingDays.Add(data);
 
-        // napraviti listu mjeseca i upisivati ukupan broj sati pojedinog mjeseca - vratiti broj sati
+            _context.SaveChanges();
+        }
+
+        public WorkingDayDto Get(int id)
+        {
+            var data = _context.WorkingDays.FirstOrDefault(x => x.Id == id);    
+
+            return _mapper.Map<WorkingDayDto>(data);
+        }
     }
 }
