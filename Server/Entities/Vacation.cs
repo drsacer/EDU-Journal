@@ -1,14 +1,13 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EDU_Journal.Server.Entities
 {
-    [Table("Vacation")]
-    public class Vacation
+    [Table("Vacations")]
+    public class Vacation : Entity
     {
-        [Key]
-        public int Id { get; set; }
-
+        public int UserId { get; set; }
         public virtual User User { get; set; }
 
         [Required]
@@ -22,8 +21,8 @@ namespace EDU_Journal.Server.Entities
         [Required]
         public byte TotalDays { get; set; }
 
-        [Column(TypeName = "varchar(300)")]
+        [MaxLength(30)]
+        [Unicode]
         public string? Note { get; set; }
-
     }
 }

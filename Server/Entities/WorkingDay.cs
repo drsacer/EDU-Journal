@@ -1,20 +1,15 @@
 ﻿
+using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EDU_Journal.Server.Entities
 {
     [Table("WorkingDays")]
-    public class WorkingDay
-    {
-        
-        [Key]
-        public int Id { get; set; }
-        
+    public class WorkingDay : Entity
+    {        
         [Required]
         public int UserId { get; set; }  // FK - koristi se samo za bazu
-
-        [Required]
         public virtual User User { get; set; } //veza na tablicu User - služi za povezivanje User i WorkingDay (važan tip virtual)
 
         [Required]
@@ -32,9 +27,9 @@ namespace EDU_Journal.Server.Entities
         [Required]
         [DataType(DataType.Time)]
         public TimeOnly PauseDuration { get; set; }
-
-        [Column(TypeName = "varchar(300)")]
+        
+        [MaxLength(30)]
+        [Unicode]
         public string? Note { get; set; }
-
     }
 }

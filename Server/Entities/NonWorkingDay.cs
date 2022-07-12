@@ -4,16 +4,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace EDU_Journal.Server.Entities
 {
     [Table("NonWorkingDays")]
-    public class NonWorkingDay
+    public class NonWorkingDay : Entity
     {
-        [Key]
-        public int Id { get; set; }
-
         public int UserId { get; set; } //FK
+        public virtual User User { get; set; }
 
         public int SickLeaveId { get; set; } // FK
-
-        public virtual User User { get; set; }
+        public virtual SickLeave SickLeave { get; set; }
 
         [Required]
         [DataType(DataType.Date)]
@@ -23,12 +20,7 @@ namespace EDU_Journal.Server.Entities
         [DataType(DataType.Date)]
         public DateOnly EndDate { get; set; }
 
-        public virtual SickLeave SickLeave { get; set; }
-
-        [Column(TypeName = "varchar(300)")]
+        [MaxLength(300)]
         public string? Note { get; set; }
-
-        
-
     }
 }

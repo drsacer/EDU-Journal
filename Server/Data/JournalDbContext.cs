@@ -8,9 +8,9 @@ namespace EDU_Journal.Server.Data
         public DbSet<User> Users { get; set; } //table
         public DbSet<WorkingDay> WorkingDays { get; set; } //table
         public DbSet<NonWorkingDay> NonWorkingDays { get; set; } //table
-        public DbSet<PublicHolidays> PublicHolidays { get; set; } //table
+        public DbSet<PublicHoliday> PublicHolidays { get; set; } //table
         public DbSet<Vacation> Vacations { get; set; } //table
-        public DbSet<SickLeave> SickLeaves{ get; set; } //table
+        public DbSet<SickLeave> SickLeaves { get; set; } //table
 
 
         public JournalDbContext(DbContextOptions<JournalDbContext> options) : base(options) { }
@@ -19,7 +19,6 @@ namespace EDU_Journal.Server.Data
         {
             modelBuilder.Entity<User>(entity =>
             {
-                entity.ToTable("Users");
                 entity.Property(e => e.Email); //lambda 
                 entity.HasIndex(i => i.Email).IsUnique();
             });

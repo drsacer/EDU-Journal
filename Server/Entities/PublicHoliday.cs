@@ -4,13 +4,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace EDU_Journal.Server.Entities
 {
     [Table("PublicHolidays")]
-    public class PublicHolidays
+    public class PublicHoliday : Entity
     {
-        [Key]
-        public int Id { get; set; }
-
         [Required]
-        [Column(TypeName = "varchar(30)")]
+        [MaxLength(30)]
         public string Name { get; set; }
 
         [Required]

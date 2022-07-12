@@ -3,16 +3,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EDU_Journal.Server.Entities
 {
-    [Table("SickLeave")]
-    public class SickLeave
+    [Table("SickLeaves")]
+    public class SickLeave : Entity
     {
-        [Key]
-        public int Id { get; set; }
-
         [Required]
-        [Column(TypeName = "varchar(300)")]
+        [MaxLength(30)]
         public string Name { get; set; }
-
-        public virtual ICollection<WorkingDay>WorkingDays { get; set; }
     }
 }
