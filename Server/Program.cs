@@ -9,7 +9,9 @@ using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddDbContext<JournalDbContext>(options => options.UseInMemoryDatabase("Journal"));
+builder.Services.AddDbContext<JournalDbContext>(options =>
+    //options.UseInMemoryDatabase("Journal"));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddScoped<IUserService, UserService>(); // Dependency injection
 builder.Services.AddScoped<IWorkingDayService, WorkingDayService>();
