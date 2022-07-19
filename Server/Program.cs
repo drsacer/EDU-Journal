@@ -22,6 +22,8 @@ builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
 
+builder.Services.AddSwaggerGen();
+
 var app = builder.Build();
 
 // (2) configure the app
@@ -45,6 +47,14 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI(o =>
+    {
+        o.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
+    });
+}
 
 app.MapRazorPages();
 app.MapControllers();
