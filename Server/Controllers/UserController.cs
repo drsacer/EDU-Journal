@@ -19,6 +19,31 @@ namespace EDU_Journal.Server.Controllers
             _logger = logger;
         }
 
+        [HttpGet]
+        [Route("saveUsers")]
+        public IActionResult Save()
+        {
+            _userService.AddUser(new UserDto());
+            return Ok();
+        }
+
+        [HttpPost]
+        public IActionResult Add (UserDto newUser)
+        {
+            _userService.AddUser (newUser);
+            return Ok();
+        }
+
+        [HttpGet]
+        public ActionResult<List<UserDto>> GetAll() {
+
+            _userService.GetAllUsers();
+            return Ok();
+        }
+
+
+
+
         /* proba K
 
         [HttpGet]
@@ -35,15 +60,9 @@ namespace EDU_Journal.Server.Controllers
 
 
             return Ok(memUsers);
-        }
+        }*/
 
-        [HttpGet]
-        [Route("saveUsers")]
-        public IActionResult saveTestUsers()
-        {
-            _userService.AddUser(new UserDto());
-            return Ok();
-        }
-        */
+
+
     }
 }

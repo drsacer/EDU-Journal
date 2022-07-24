@@ -1,4 +1,6 @@
 ﻿ @page "/user"
+@using EDU_Journal.Shared.DTOs
+@inject HttpClient Http
 <h3>User</h3>
 
 <input placeholder="First Name" @bind="firstName"/>
@@ -25,5 +27,10 @@
     private void AddLastName()
     {
         lastName = lastName;
+    }
+
+    protected override async Task OnInitializedAsync()
+    {   
+        var data = await Http.GetFromJsonAsync<List<UserDto>>("user");
     }
 }

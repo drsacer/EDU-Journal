@@ -16,7 +16,8 @@ namespace EDU_Journal.Server.Services
             _mapper = mapper;
         }
 
-        public List<UserDto> GetAll()
+      
+        public List<UserDto> GetAllUsers()
         {
             try
             {
@@ -28,22 +29,16 @@ namespace EDU_Journal.Server.Services
                 Console.WriteLine(ex.Message);
                 throw ex;
             }
-        }
-        /* proba K
-        void IUserService.AddUser(UserDto userDto)
+        } 
+
+
+        public void AddUser (UserDto userDto)
         {
-            User user;
-            user = new User();
-            user.Email = "test@gmail.com";
+            var data = _mapper.Map<User>(userDto);
 
-
-            _context.Add(user);
+            _context.Users.Add(data);
             _context.SaveChanges();
-        } */
 
-        List<UserDto> IUserService.GetAll()
-        {
-            throw new NotImplementedException();
         }
     }
 }

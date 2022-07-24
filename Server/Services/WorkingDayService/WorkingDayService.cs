@@ -16,20 +16,30 @@ namespace EDU_Journal.Server.Services.WorkingDayService
             _mapper = mapper;
         }
 
-        public void Book(WorkingDayDto workingDay)
+        public void Book(WorkingDayDto workingDay)  
         {
-            var data = _mapper.Map<WorkingDay>(workingDay);
+            var data = _mapper.Map<WorkingDay>(workingDay); // tu se mapira iz WorkingDayDto u WorkingDay
 
+            // da li se tu zapisuje u bazu? U bazi već imamo WorkingDay, što se dešava u bazi ako WorkingDayDTO nema iste fieldove kao i WorkingDay?
             _context.WorkingDays.Add(data);
 
-            _context.SaveChanges();
+            _context.SaveChanges(); // sprema se u bazu?
         }
 
-        public WorkingDayDto Get(int id)
+        // ovu metodu poziva kontroler, preko contexta dohvaća se u bazu WorkingDays i vraća se 1 radni dani klijentu
+        public WorkingDayDto GetById(int id) 
         {
             var data = _context.WorkingDays.FirstOrDefault(x => x.Id == id);    
 
             return _mapper.Map<WorkingDayDto>(data);
+        }
+
+        // ovu metodu poziva kontroler, preko contexta dohvaća se u bazu WorkingDays i vraćaju se SVI radni dani klijentu u obliku liste
+        public List<WorkingDayDto> GetAll()
+        {
+            var data = _context.WorkingDays.ToList();
+
+            return _mapper.Map<List<WorkingDayDto>>(data);
         }
     }
 }

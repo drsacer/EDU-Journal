@@ -1,7 +1,11 @@
-﻿namespace EDU_Journal.Server.Services.VacationService
+﻿using EDU_Journal.Shared.DTOs;
+
+namespace EDU_Journal.Server.Services.VacationService
 {
     public interface IVacationService
     {
-        void Create(DateOnly dateFrom, DateOnly dateTo, string? note);
+        //void CreateVacation (DateOnly dateFrom, DateOnly dateTo, string? note);
+
+        void CreateVacation(VacationDto vacation);
     }
 }
