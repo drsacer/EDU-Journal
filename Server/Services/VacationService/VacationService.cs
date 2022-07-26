@@ -1,4 +1,5 @@
-﻿using EDU_Journal.Server.Data;
+﻿using AutoMapper;
+using EDU_Journal.Server.Data;
 using EDU_Journal.Server.Entities;
 using EDU_Journal.Shared.DTOs;
 
@@ -7,26 +8,31 @@ namespace EDU_Journal.Server.Services.VacationService
     public class VacationService : IVacationService
     {
         private readonly JournalDbContext _context;
+        private readonly IMapper _mapper;
 
-        public VacationService(JournalDbContext context)
+        public VacationService(JournalDbContext context, IMapper mapper)
         {
-            _context = context; 
+            _context = context;
+            _mapper = mapper;
         }
 
     
 
-       public void CreateVacation(DateOnly dateFrom, DateOnly dateTo, string? note)
+       public void CreateVacation(VacationDto model)
         {
             try
-            {
+            { 
+            /*
                 var vacation = new Vacation()
                 {
                     StartDate = dateFrom,
                     EndDate = dateTo,
                     Note = note
-                };
+                };*/
 
-                CalculateNumberOfVacationDays(vacation);
+                CalculateNumberOfVacationDays(model);
+               
+                var vacation = _mapper.Map<Vacation>(model);
 
                 _context.Vacations.Add(vacation);
 
@@ -38,7 +44,12 @@ namespace EDU_Journal.Server.Services.VacationService
             }
         }
 
-        private void CalculateNumberOfVacationDays(Vacation vacation) {
+        public void CreateVacation(DateOnly dateFrom, DateOnly dateTo, string? note)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void CalculateNumberOfVacationDays(VacationDto vacation) {
 
             // int vacationDays = 0;
             vacation.TotalDays = 0;

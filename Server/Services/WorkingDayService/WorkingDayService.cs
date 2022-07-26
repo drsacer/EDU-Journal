@@ -54,5 +54,11 @@ namespace EDU_Journal.Server.Services.WorkingDayService
             _context.Remove(data);
             _context.SaveChanges();
         }
+
+        private int Calculate()
+        {
+            return 1;
+        }
+
     }
 }

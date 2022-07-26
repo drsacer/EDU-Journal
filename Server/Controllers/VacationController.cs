@@ -17,9 +17,9 @@ namespace EDU_Journal.Server.Controllers
 
         
         [HttpPost]
-        public IActionResult CreateVacation (DateOnly startDate, DateOnly endDate, String note) //VacationDto vacation - kao i WorkingDay
+        public IActionResult CreateVacation(VacationDto vacation) //VacationDto vacation - kao i WorkingDay
         {
-            _vacationService.CreateVacation(startDate, endDate, note);
+            _vacationService.CreateVacation(vacation);
 
             return Ok();
         } 

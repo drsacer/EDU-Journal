@@ -63,5 +63,12 @@ namespace EDU_Journal.Server.Services
             _context.SaveChanges();
 
         }
+
+        public void ChangePassword(int id, string password)
+        {
+            var user = _context.Users.Find(id);
+            user.Password = password;
+            _context.SaveChanges();
+        }
     }
 }

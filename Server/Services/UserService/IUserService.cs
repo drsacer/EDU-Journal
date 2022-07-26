@@ -10,5 +10,6 @@ namespace EDU_Journal.Server.Services
         void UpdateUser(UserDto userDto);
         UserDto GetUserData(int id);
         void DeleteUser(int id);
+        void ChangePassword(int id, string password);
     }
 }

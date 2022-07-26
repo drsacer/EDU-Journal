@@ -19,16 +19,6 @@ namespace EDU_Journal.Server.Controllers
             _logger = logger;
         }
 
-        /*
-        [HttpGet]
-        [Route("saveUsers")]
-        public IActionResult Save()
-        {
-            _userService.AddUser(new UserDto());
-            return Ok();
-        }
-        */
-
         [HttpGet]
         public ActionResult<List<UserDto>> GetAll()
         {
@@ -44,22 +34,31 @@ namespace EDU_Journal.Server.Controllers
             return Ok();
         }
 
-        [HttpPut]
-        public IActionResult UpdateUser(UserDto user)
+        [HttpPut("{id}")]
+        public IActionResult UpdateUser(int id, UserDto user)
         {
-            _userService.UpdateUser(user); 
+            _userService.UpdateUser(user);
             return Ok();
         }
 
+        [HttpPatch("{id}")]
+        public IActionResult ChangePassword(int id, string password)
+        {
+            _userService.ChangePassword(id, password);
+            return Ok();
+
+        }
+
+
         [HttpGet("{id}")]
-        public  IActionResult GetUserData(int id)
+        public ActionResult<UserDto> GetUserData(int id)
         {
             //U UserService metoda GetUserData vraća UserDto pa je tip podataka u liniji ispod UserDto
             UserDto user = _userService.GetUserData(id);
             return Ok(user);
         }
 
-        [HttpDelete("{id")]
+        [HttpDelete("{id}")]
         public IActionResult DeleteUser(int id)
         {
             _userService.DeleteUser(id);
