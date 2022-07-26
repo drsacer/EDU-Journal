@@ -15,7 +15,7 @@ namespace EDU_Journal.Server
 
             CreateMap<VacationDto, Vacation>();
 
-            CreateMap<NonWorkingDayDto, NonWorkingDay>();
+            CreateMap<NonWorkingDayDto, NonWorkingDay>().ForMember(x => x.EndDate, o => o.Ignore());
         }
     }
 }

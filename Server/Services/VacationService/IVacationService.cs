@@ -4,8 +4,8 @@ namespace EDU_Journal.Server.Services.VacationService
 {
     public interface IVacationService
     {
-        //void CreateVacation (DateOnly dateFrom, DateOnly dateTo, string? note);
+       void CreateVacation (DateOnly dateFrom, DateOnly dateTo, string? note);
 
-        void CreateVacation(VacationDto vacation);
+        // void CreateVacation(VacationDto vacation);
     }
 }

@@ -9,7 +9,7 @@ namespace EDU_Journal.Server
             User drago = new User();
             drago.Email = "drsacer@gmail.com";
 
-
+            /*
             WorkingDay workingDay = new WorkingDay();
             workingDay.User = drago;
             workingDay.Date = new DateOnly(2022, 06, 21);
@@ -28,9 +28,11 @@ namespace EDU_Journal.Server
             workingDay2.Date = new DateOnly(2022, 06, 23);
             workingDay2.StartTime = new TimeOnly(8, 00);
             workingDay2.EndTime = new TimeOnly(16, 00);
+            
 
             var workTime = endtime - startTime;
-            Console.WriteLine(workTime.ToString());
+            Console.WriteLine(workTime.ToString()); 
+            */
 
 
         }

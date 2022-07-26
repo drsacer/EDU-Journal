@@ -12,13 +12,14 @@ namespace EDU_Journal.Server.Entities
         public int SickLeaveId { get; set; } // FK
         public virtual SickLeave SickLeave { get; set; }
 
-        [Required]
+        [NotMapped]
         [DataType(DataType.Date)]
-        public DateOnly StartDate { get; set; }
+        public DateTime StartDate { get; set; }
 
-        [Required]
+        
+        [NotMapped]
         [DataType(DataType.Date)]
-        public DateOnly EndDate { get; set; }
+        public DateTime EndDate { get; set; }
 
         [MaxLength(300)]
         public string? Note { get; set; }

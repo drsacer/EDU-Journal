@@ -2,6 +2,7 @@
 using EDU_Journal.Server.Data;
 using EDU_Journal.Server.Entities;
 using EDU_Journal.Shared.DTOs;
+using Microsoft.EntityFrameworkCore;
 
 namespace EDU_Journal.Server.Services
 {
@@ -16,7 +17,7 @@ namespace EDU_Journal.Server.Services
             _mapper = mapper;
         }
 
-      
+        
         public List<UserDto> GetAllUsers()
         {
             try
@@ -31,12 +32,34 @@ namespace EDU_Journal.Server.Services
             }
         } 
 
-
-        public void AddUser (UserDto userDto)
+       
+        public void AddUser (UserDto user)
         {
-            var data = _mapper.Map<User>(userDto);
+            var data = _mapper.Map<User>(user);
 
             _context.Users.Add(data);
+            _context.SaveChanges();
+
+        }
+
+        public void UpdateUser(UserDto user)
+        {
+            _context.Entry(user).State = EntityState.Modified;
+            _context.SaveChanges();
+        }
+
+        public UserDto GetUserData(int id)
+        {
+            User data = _context.Users.Find(id);
+            UserDto u = _mapper.Map<UserDto>(data);
+            return u;
+        }
+
+        public void DeleteUser(int id)
+        {
+            var data = _context.Users.Find(id);
+
+            _context.Users.Remove(data);
             _context.SaveChanges();
 
         }

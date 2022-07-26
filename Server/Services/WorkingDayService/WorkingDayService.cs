@@ -2,6 +2,7 @@
 using EDU_Journal.Server.Data;
 using EDU_Journal.Server.Entities;
 using EDU_Journal.Shared.DTOs;
+using Microsoft.EntityFrameworkCore;
 
 namespace EDU_Journal.Server.Services.WorkingDayService
 {
@@ -16,18 +17,16 @@ namespace EDU_Journal.Server.Services.WorkingDayService
             _mapper = mapper;
         }
 
-        public void Book(WorkingDayDto workingDay)  
+        public void AddWorkingDay(WorkingDayDto workingDay)  
         {
-            var data = _mapper.Map<WorkingDay>(workingDay); // tu se mapira iz WorkingDayDto u WorkingDay
+            var data = _mapper.Map<WorkingDay>(workingDay); 
 
-            // da li se tu zapisuje u bazu? U bazi već imamo WorkingDay, što se dešava u bazi ako WorkingDayDTO nema iste fieldove kao i WorkingDay?
             _context.WorkingDays.Add(data);
-
-            _context.SaveChanges(); // sprema se u bazu?
+            _context.SaveChanges(); 
         }
 
         // ovu metodu poziva kontroler, preko contexta dohvaća se u bazu WorkingDays i vraća se 1 radni dani klijentu
-        public WorkingDayDto GetById(int id) 
+        public WorkingDayDto GetWorkingDay(int id) 
         {
             var data = _context.WorkingDays.FirstOrDefault(x => x.Id == id);    
 
@@ -40,6 +39,20 @@ namespace EDU_Journal.Server.Services.WorkingDayService
             var data = _context.WorkingDays.ToList();
 
             return _mapper.Map<List<WorkingDayDto>>(data);
+        }
+
+        public void UpdateWorkingDay(WorkingDayDto workingDay)
+        {
+            _context.Entry(workingDay).State = EntityState.Modified;
+            _context.SaveChanges();
+        }
+
+        public void DeleteWorkingDay(int id)
+        {
+            var data = _context.WorkingDays.Find(id);
+            
+            _context.Remove(data);
+            _context.SaveChanges();
         }
     }
 }

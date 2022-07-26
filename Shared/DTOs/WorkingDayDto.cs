@@ -10,7 +10,7 @@ namespace EDU_Journal.Shared.DTOs
         public int UserId { get; set; }  
 
         [Required]
-        public DateOnly Date { get; set; }
+        public DateTime Date { get; set; }
 
         [Required]
         public TimeOnly StartTime { get; set; }

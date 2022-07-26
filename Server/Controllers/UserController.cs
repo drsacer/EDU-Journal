@@ -19,6 +19,7 @@ namespace EDU_Journal.Server.Controllers
             _logger = logger;
         }
 
+        /*
         [HttpGet]
         [Route("saveUsers")]
         public IActionResult Save()
@@ -26,43 +27,43 @@ namespace EDU_Journal.Server.Controllers
             _userService.AddUser(new UserDto());
             return Ok();
         }
+        */
+
+        [HttpGet]
+        public ActionResult<List<UserDto>> GetAll()
+        {
+            var data = _userService.GetAllUsers();
+            return Ok(data);
+        }
+
 
         [HttpPost]
-        public IActionResult Add (UserDto newUser)
+        public IActionResult AddNewUser(UserDto newUser)
         {
-            _userService.AddUser (newUser);
+            _userService.AddUser(newUser);
             return Ok();
         }
 
-        [HttpGet]
-        public ActionResult<List<UserDto>> GetAll() {
-
-            _userService.GetAllUsers();
+        [HttpPut]
+        public IActionResult UpdateUser(UserDto user)
+        {
+            _userService.UpdateUser(user); 
             return Ok();
         }
 
-
-
-
-        /* proba K
-
-        [HttpGet]
-        public IActionResult GetUsers()
+        [HttpGet("{id}")]
+        public  IActionResult GetUserData(int id)
         {
+            //U UserService metoda GetUserData vraća UserDto pa je tip podataka u liniji ispod UserDto
+            UserDto user = _userService.GetUserData(id);
+            return Ok(user);
+        }
 
-
-            var users = _userService.GetAll();
-
-            var memUsers = new LinkedList<UserDto>();
-            memUsers.AddLast(new UserDto());
-            memUsers.AddLast(new UserDto());
-            memUsers.AddLast(new UserDto());
-
-
-            return Ok(memUsers);
-        }*/
-
-
-
+        [HttpDelete("{id")]
+        public IActionResult DeleteUser(int id)
+        {
+            _userService.DeleteUser(id);
+            return Ok();
+        }
     }
 }

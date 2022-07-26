@@ -12,11 +12,11 @@ namespace EDU_Journal.Shared.DTOs
 
         [Required]
         [DataType(DataType.Date)]
-        public DateOnly StartDate { get; set; }
+        public DateTime StartDate { get; set; }
 
         [Required]
         [DataType(DataType.Date)]
-        public DateOnly EndDate { get; set; }
+        public DateTime EndDate { get; set; }
 
         [Required]
         public byte TotalDays { get; set; }

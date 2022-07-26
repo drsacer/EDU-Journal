@@ -4,10 +4,10 @@ namespace EDU_Journal.Server.Services.WorkingDayService
 {
     public interface IWorkingDayService
     {
-        void Book(WorkingDayDto workingDay);
-
-        List<WorkingDayDto> GetAll(); 
-
-        WorkingDayDto GetById(int id);
+        public void AddWorkingDay(WorkingDayDto workingDay);
+        public WorkingDayDto GetWorkingDay(int id);
+        public List<WorkingDayDto> GetAll(); 
+        public void UpdateWorkingDay(WorkingDayDto workingDay);
+        public void DeleteWorkingDay(int id);
     }
 }

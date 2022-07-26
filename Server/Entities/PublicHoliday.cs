@@ -12,6 +12,6 @@ namespace EDU_Journal.Server.Entities
 
         [Required]
         [DataType(DataType.Date)]
-        public DateOnly Date { get; set; }
+        public DateTime Date { get; set; }
     }
 }

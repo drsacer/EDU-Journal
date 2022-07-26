@@ -13,9 +13,9 @@ namespace EDU_Journal.Server.Services.VacationService
             _context = context; 
         }
 
-        public void CreateVacation(VacationDto vacation) { }
+    
 
-       /* public void CreateVacation(DateOnly dateFrom, DateOnly dateTo, string? note)
+       public void CreateVacation(DateOnly dateFrom, DateOnly dateTo, string? note)
         {
             try
             {
@@ -36,7 +36,7 @@ namespace EDU_Journal.Server.Services.VacationService
             {
                 throw ex;
             }
-        }*/
+        }
 
         private void CalculateNumberOfVacationDays(Vacation vacation) {
 

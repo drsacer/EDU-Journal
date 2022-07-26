@@ -15,21 +15,13 @@ namespace EDU_Journal.Server.Controllers
             _vacationService = vacationService;
         }
 
-        /*
+        
         [HttpPost]
         public IActionResult CreateVacation (DateOnly startDate, DateOnly endDate, String note) //VacationDto vacation - kao i WorkingDay
         {
             _vacationService.CreateVacation(startDate, endDate, note);
 
             return Ok();
-        } */
-
-        [HttpPost]
-        public IActionResult CreateVacation(VacationDto vacation) //VacationDto vacation - kao i WorkingDay
-        {
-            _vacationService.CreateVacation(vacation);
-
-            return Ok();
-        }
+        } 
     }
 }

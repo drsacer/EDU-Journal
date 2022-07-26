@@ -16,25 +16,42 @@ namespace EDU_Journal.Server.Controllers
         }
 
         [HttpPost]
-        // od kuda taj model koji se šalje preko interfejsa do WorkingDayService? To je ono što klijent upiše na browseru?
-        public IActionResult BookWD(WorkingDayDto model) 
+        public IActionResult AddWorkingDay(WorkingDayDto model) 
         {
-            _workingDayService.Book(model);
+            _workingDayService.AddWorkingDay(model);
 
             return Ok();
         }
 
-        // poziva se metoda GetAll u interfejsu kojeg implamentira WorkingDayService
         [HttpGet]
-        public ActionResult<List<WorkingDayDto>> GetAllWD()
+        public ActionResult GetById(int id)
         {
-            return Ok(_workingDayService.GetAll());
+            WorkingDayDto workingDayDto = _workingDayService.GetWorkingDay(id);
+            
+            return Ok(workingDayDto);
         }
 
         [HttpGet]
-        public ActionResult<List<WorkingDayDto>> GetById(int id)
+        public ActionResult<List<WorkingDayDto>> GetAllWorkingDays()
         {
-            return Ok(_workingDayService.GetById(id));
+            //metoda List<WorkingDayDto> GetAll() u WorkingDayService vraća listu WorkingDayDto
+            List<WorkingDayDto> list = _workingDayService.GetAll(); 
+
+            return Ok(list);
+        }
+
+        [HttpPut]
+        public IActionResult UpdateWorkingDay(WorkingDayDto workingDay)
+        {
+            _workingDayService.UpdateWorkingDay(workingDay);
+            return Ok();
+        }
+
+        [HttpDelete]
+        public IActionResult DeleteWorkingDay(int id)
+        {
+            _workingDayService.DeleteWorkingDay(id);
+            return Ok();
         }
     }
 }
