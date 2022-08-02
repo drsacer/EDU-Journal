@@ -4,6 +4,7 @@ using EDU_Journal.Server.Services.VacationService;
 using EDU_Journal.Server.Services.WorkingDayService;
 using EDU_Journal.Server.Services.NonWorkingDayService;
 using Microsoft.EntityFrameworkCore;
+using EDU_Journal.Server.Services.PublicHolidayService;
 
 // (1) create and add things to builder and build app
 
@@ -11,13 +12,14 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddDbContext<JournalDbContext>(options =>
-    //options.UseInMemoryDatabase("Journal"));
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+    options.UseInMemoryDatabase("Journal"));
+    //options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddScoped<IUserService, UserService>(); // Dependency injection
 builder.Services.AddScoped<IWorkingDayService, WorkingDayService>();
 builder.Services.AddScoped<IVacationService, VacationService>();
 builder.Services.AddScoped<INonWorkingDayService, NonWorkingDayService>();
+builder.Services.AddScoped<IPublicHolidayService, PublicHolidayService>();
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 

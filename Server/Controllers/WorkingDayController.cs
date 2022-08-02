@@ -10,9 +10,9 @@ namespace EDU_Journal.Server.Controllers
     {
         private readonly IWorkingDayService _workingDayService;
 
-        public WorkingDayController(IWorkingDayService _workingDayService)
+        public WorkingDayController(IWorkingDayService workingDayService)
         {
-            _workingDayService = _workingDayService;    
+            _workingDayService = workingDayService;    
         }
 
         [HttpPost]
@@ -23,31 +23,31 @@ namespace EDU_Journal.Server.Controllers
             return Ok();
         }
 
-        [HttpGet]
-        public ActionResult GetById(int id)
+        [HttpGet("{id}")]
+        public ActionResult<WorkingDayDto> GetById(int id)
         {
-            WorkingDayDto workingDayDto = _workingDayService.GetWorkingDay(id);
+            var data = _workingDayService.GetWorkingDayById(id);
             
-            return Ok(workingDayDto);
+            return Ok(data);
         }
 
         [HttpGet]
         public ActionResult<List<WorkingDayDto>> GetAllWorkingDays()
         {
             //metoda List<WorkingDayDto> GetAll() u WorkingDayService vraća listu WorkingDayDto
-            List<WorkingDayDto> list = _workingDayService.GetAll(); 
+            var list = _workingDayService.GetAll(); 
 
             return Ok(list);
         }
 
         [HttpPut]
-        public IActionResult UpdateWorkingDay(WorkingDayDto workingDay)
+        public IActionResult UpdateWorkingDay(int id)
         {
-            _workingDayService.UpdateWorkingDay(workingDay);
+            _workingDayService.UpdateWorkingDay(id);
             return Ok();
         }
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public IActionResult DeleteWorkingDay(int id)
         {
             _workingDayService.DeleteWorkingDay(id);

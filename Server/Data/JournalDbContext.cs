@@ -1,5 +1,7 @@
 ﻿using EDU_Journal.Server.Entities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EDU_Journal.Server.Data
 {
@@ -35,6 +37,65 @@ namespace EDU_Journal.Server.Data
             {
                 entity.HasIndex(i => i.Name).IsUnique();
             });
+
+           modelBuilder.Entity<Vacation>().Property(s => s.StartDate)
+                .HasConversion<DateOnlyConverter, DateOnlyComparer>();
+
+            modelBuilder.Entity<Vacation>().Property(e => e.EndDate)
+                .HasConversion<DateOnlyConverter, DateOnlyComparer>();
+
+            modelBuilder.Entity<NonWorkingDay>().Property(s => s.StartDate)
+                .HasConversion<DateOnlyConverter, DateOnlyComparer>();
+
+            modelBuilder.Entity<NonWorkingDay>().Property(e => e.EndDate)
+                .HasConversion<DateOnlyConverter, DateOnlyComparer>();
+        }
+
+        public class DateOnlyConverter : ValueConverter<DateOnly, DateTime>
+        {
+   
+            public DateOnlyConverter() : base(
+                    d => d.ToDateTime(TimeOnly.MinValue),
+                    d => DateOnly.FromDateTime(d))
+            { }
+        }
+
+        public class DateOnlyComparer : ValueComparer<DateOnly>
+        {
+            public DateOnlyComparer() : base(
+                (d1, d2) => d1.DayNumber == d2.DayNumber,
+                d => d.GetHashCode())
+            {
+            }
+        }
+
+        public class TimeOnlyConverter : ValueConverter<TimeOnly, TimeSpan>
+        {
+            public TimeOnlyConverter() : base(
+                    timeOnly => timeOnly.ToTimeSpan(),
+                    timeSpan => TimeOnly.FromTimeSpan(timeSpan))
+            {
+            }
+        }
+
+        public class TimeOnlyComparer : ValueComparer<TimeOnly>
+        {
+            public TimeOnlyComparer() : base(
+                (t1, t2) => t1.Ticks == t2.Ticks,
+                t => t.GetHashCode())
+            {
+            }
+        }
+
+        protected override void ConfigureConventions(ModelConfigurationBuilder builder)
+        {
+            builder.Properties<DateOnly>()
+                   .HaveConversion<DateOnlyConverter>();
+            // .HaveColumnType("date");
+
+            builder.Properties<TimeOnly>()
+                  .HaveConversion<TimeOnlyConverter>();
+                 // .HaveColumnType("date");
         }
     }
 }

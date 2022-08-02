@@ -26,7 +26,7 @@ namespace EDU_Journal.Server.Services.WorkingDayService
         }
 
         // ovu metodu poziva kontroler, preko contexta dohvaća se u bazu WorkingDays i vraća se 1 radni dani klijentu
-        public WorkingDayDto GetWorkingDay(int id) 
+        public WorkingDayDto GetWorkingDayById(int id) 
         {
             var data = _context.WorkingDays.FirstOrDefault(x => x.Id == id);    
 
@@ -41,9 +41,10 @@ namespace EDU_Journal.Server.Services.WorkingDayService
             return _mapper.Map<List<WorkingDayDto>>(data);
         }
 
-        public void UpdateWorkingDay(WorkingDayDto workingDay)
+        public void UpdateWorkingDay(int id)
         {
-            _context.Entry(workingDay).State = EntityState.Modified;
+            var data = _context.WorkingDays.Find(id);
+            _context.Entry(data).State = EntityState.Modified;
             _context.SaveChanges();
         }
 

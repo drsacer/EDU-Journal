@@ -14,12 +14,12 @@ namespace EDU_Journal.Server.Entities
 
         [NotMapped]
         [DataType(DataType.Date)]
-        public DateTime StartDate { get; set; }
+        public DateOnly StartDate { get; set; }
 
         
         [NotMapped]
         [DataType(DataType.Date)]
-        public DateTime EndDate { get; set; }
+        public DateOnly EndDate { get; set; }
 
         [MaxLength(300)]
         public string? Note { get; set; }

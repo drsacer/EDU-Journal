@@ -7,19 +7,16 @@ using System.Threading.Tasks;
 
 namespace EDU_Journal.Shared.DTOs
 {
-    public class NonWorkingDayDto
+    public class PublicHolidayDto
     {
-        public int Id { get; set; }
+        public int id { get; set; }
+
+        [Required]
+        [MaxLength(30)]
+        public string Name { get; set; }
 
         [Required]
         [DataType(DataType.Date)]
-        public DateOnly StartDate { get; set; }
-
-        [Required]
-        [DataType(DataType.Date)]
-        public DateOnly EndDate { get; set; }
-
-        [MaxLength(300)]
-        public string? Note { get; set; }
+        public DateTime Date { get; set; }
     }
 }

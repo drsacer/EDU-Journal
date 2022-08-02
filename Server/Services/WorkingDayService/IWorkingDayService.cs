@@ -5,9 +5,9 @@ namespace EDU_Journal.Server.Services.WorkingDayService
     public interface IWorkingDayService
     {
         public void AddWorkingDay(WorkingDayDto workingDay);
-        public WorkingDayDto GetWorkingDay(int id);
+        public WorkingDayDto GetWorkingDayById(int id);
         public List<WorkingDayDto> GetAll(); 
-        public void UpdateWorkingDay(WorkingDayDto workingDay);
+        public void UpdateWorkingDay(int id);
         public void DeleteWorkingDay(int id);
     }
 }

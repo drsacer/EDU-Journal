@@ -2,6 +2,7 @@
 using EDU_Journal.Server.Data;
 using EDU_Journal.Server.Entities;
 using EDU_Journal.Shared.DTOs;
+using Microsoft.EntityFrameworkCore;
 
 namespace EDU_Journal.Server.Services.VacationService
 {
@@ -15,8 +16,6 @@ namespace EDU_Journal.Server.Services.VacationService
             _context = context;
             _mapper = mapper;
         }
-
-    
 
        public void CreateVacation(VacationDto model)
         {
@@ -35,7 +34,6 @@ namespace EDU_Journal.Server.Services.VacationService
                 var vacation = _mapper.Map<Vacation>(model);
 
                 _context.Vacations.Add(vacation);
-
                 _context.SaveChanges();
             }
             catch (Exception ex)
@@ -44,12 +42,33 @@ namespace EDU_Journal.Server.Services.VacationService
             }
         }
 
-        public void CreateVacation(DateOnly dateFrom, DateOnly dateTo, string? note)
+        public VacationDto GetVacationById(int id)
         {
-            throw new NotImplementedException();
+            var vacation = _context.Vacations.Find(id);
+            return _mapper.Map<VacationDto>(vacation);
+        }
+        public List<VacationDto> GetAllVacations()
+        {
+            var list = _context.Vacations.ToList();
+            return _mapper.Map<List<VacationDto>>(list);
+        }
+        public void UpdateVacation(int id)
+        {
+            var vacation = _context.Vacations.Find(id);
+
+            _context.Entry(vacation).State = EntityState.Modified;
+            _context.SaveChanges();
+        }
+        public void DeleteVacation(int id)
+        {
+            var vacation = _context.Vacations.Find(id);
+            
+            _context.Remove(vacation);
+            _context.SaveChanges();
         }
 
-        private void CalculateNumberOfVacationDays(VacationDto vacation) {
+        private void CalculateNumberOfVacationDays(VacationDto vacation)
+        {
 
             // int vacationDays = 0;
             vacation.TotalDays = 0;
@@ -57,7 +76,7 @@ namespace EDU_Journal.Server.Services.VacationService
             if (vacation.EndDate < vacation.StartDate)
             {
                 throw new ArgumentException("Incorrect date");
-            } 
+            }
             else
             {
                 for (var date = vacation.StartDate; date < vacation.EndDate; date.AddDays(1))

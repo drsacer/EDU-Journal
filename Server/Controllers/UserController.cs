@@ -19,13 +19,6 @@ namespace EDU_Journal.Server.Controllers
             _logger = logger;
         }
 
-        [HttpGet]
-        public ActionResult<List<UserDto>> GetAll()
-        {
-            var data = _userService.GetAllUsers();
-            return Ok(data);
-        }
-
 
         [HttpPost]
         public IActionResult AddNewUser(UserDto newUser)
@@ -34,10 +27,32 @@ namespace EDU_Journal.Server.Controllers
             return Ok();
         }
 
-        [HttpPut("{id}")]
-        public IActionResult UpdateUser(int id, UserDto user)
+        [HttpGet]
+        public ActionResult<List<UserDto>> GetAll()
         {
-            _userService.UpdateUser(user);
+            var data = _userService.GetAllUsers();
+            return Ok(data);
+        }
+
+        [HttpPut("{id}")]
+        public IActionResult UpdateUser(int id)
+        {
+            _userService.UpdateUserById(id);
+            return Ok();
+        }
+
+        [HttpGet("{id}")]
+        public ActionResult<UserDto> GetUserData(int id)
+        {
+            //U UserService metoda GetUserDataById vraća UserDto pa je tip podataka u liniji ispod UserDto (može biti var user)
+            UserDto user = _userService.GetUserDataById(id);
+            return Ok(user);
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult DeleteUser(int id)
+        {
+            _userService.DeleteUserById(id);
             return Ok();
         }
 
@@ -45,23 +60,6 @@ namespace EDU_Journal.Server.Controllers
         public IActionResult ChangePassword(int id, string password)
         {
             _userService.ChangePassword(id, password);
-            return Ok();
-
-        }
-
-
-        [HttpGet("{id}")]
-        public ActionResult<UserDto> GetUserData(int id)
-        {
-            //U UserService metoda GetUserData vraća UserDto pa je tip podataka u liniji ispod UserDto
-            UserDto user = _userService.GetUserData(id);
-            return Ok(user);
-        }
-
-        [HttpDelete("{id}")]
-        public IActionResult DeleteUser(int id)
-        {
-            _userService.DeleteUser(id);
             return Ok();
         }
     }

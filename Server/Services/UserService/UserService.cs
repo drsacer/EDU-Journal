@@ -17,7 +17,6 @@ namespace EDU_Journal.Server.Services
             _mapper = mapper;
         }
 
-        
         public List<UserDto> GetAllUsers()
         {
             try
@@ -32,30 +31,29 @@ namespace EDU_Journal.Server.Services
             }
         } 
 
-       
         public void AddUser (UserDto user)
         {
             var data = _mapper.Map<User>(user);
 
             _context.Users.Add(data);
             _context.SaveChanges();
-
         }
 
-        public void UpdateUser(UserDto user)
+        public void UpdateUserById(int id)
         {
-            _context.Entry(user).State = EntityState.Modified;
+            var data = _context.Users.Find(id);
+
+            _context.Entry(data).State = EntityState.Modified;
             _context.SaveChanges();
         }
 
-        public UserDto GetUserData(int id)
+        public UserDto GetUserDataById(int id)
         {
-            User data = _context.Users.Find(id);
-            UserDto u = _mapper.Map<UserDto>(data);
-            return u;
+            var data = _context.Users.Find(id);
+            return _mapper.Map<UserDto>(data);
         }
 
-        public void DeleteUser(int id)
+        public void DeleteUserById(int id)
         {
             var data = _context.Users.Find(id);
 
@@ -67,6 +65,7 @@ namespace EDU_Journal.Server.Services
         public void ChangePassword(int id, string password)
         {
             var user = _context.Users.Find(id);
+
             user.Password = password;
             _context.SaveChanges();
         }
